@@ -1,14 +1,10 @@
-// F3 - Briefing
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==========================================================================
+// Briefing
 
 // SIDE: GUER
 
-// ==========================================================================
-
 // TASKS
-// The code below creates tasks. Two (commented-out) sample tasks are included.
-// Note: tasks should be entered into this file in reverse order.
+// The code below creates tasks. Two (commented-out) sample tasks are
+// included. Note: tasks should be entered into this file in reverse order.
 
 // _task2 = player createSimpleTask ["OBJ_2"];
 // _task2 setSimpleTaskDescription ["IN DEPTH OBJECTIVE DESCRIPTION", "SHORT OBJECTIVE DESCRIPTION", "WAYPOINT TEXT"];
@@ -29,7 +25,7 @@ _cre = player createDiaryRecord ["diary", ["Credits","
 <br/>
 *** Insert mission credits here. ***
 <br/><br/>
-Made with F3 (http://www.ferstaberinde.com/f3/en/)
+Made with the PA mission framework
 "]];
 
 // ==========================================================================
@@ -94,6 +90,4 @@ FRIENDLY FORCES
 *** Insert information about friendly forces here.***
 "]];
 
-// ==========================================================================
-
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

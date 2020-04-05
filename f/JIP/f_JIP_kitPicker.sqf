@@ -2,8 +2,7 @@
 #define COMBO (uiNamespace getVariable "KitPick_Combo")
 #define USEBUTTON (uiNamespace getVariable "KitPick_UseBtn")
 
-KitPickInit =
-{
+KitPickInit = {
     uiNamespace setVariable ["KitPick_Dlg", _this select 0];
     uiNamespace setVariable ["KitPick_Combo", (_this select 0) displayCtrl 1];
     uiNamespace setVariable ["KitPick_UseBtn", (_this select 0) displayCtrl 3];
@@ -26,22 +25,19 @@ KitPickInit =
 
     _idx = COMBO lbAdd "Rifleman"; COMBO lbSetData [_idx, "r"];
     _idx = COMBO lbAdd "Carabineer"; COMBO lbSetData [_idx, "car"];
-	_idx = COMBO lbAdd "Submachinegunner"; COMBO lbSetData [_idx, "smg"];
+    _idx = COMBO lbAdd "Submachinegunner"; COMBO lbSetData [_idx, "smg"];
 
-    _sel = player getVariable "KitPicker_Selection";
-    if (!isNil '_sel') then
-    {
+    private _sel = player getVariable "KitPicker_Selection";
+    if (!isNil '_sel') then {
         COMBO lbSetCurSel _sel;
     };
 };
 
-KitPicker_Pick =
-{
-    private "_idx";
-    _idx = lbCurSel COMBO;
+KitPicker_Pick = {
+    private _idx = lbCurSel COMBO;
     if (_idx < 0) exitWith {};
 
-    _data = COMBO lbData _idx;
+    private _data = COMBO lbData _idx;
     if (_data == "") exitWith {};
 
     closeDialog 0;
@@ -50,21 +46,13 @@ KitPicker_Pick =
     f_var_JIP_state = 3;
 };
 
-KitPicker_OnSelChanged =
-{
-    private "_idx";
-    _idx = lbCurSel COMBO;
-    if (_idx < 0) exitWith
-    {
-        USEBUTTON ctrlEnable false;
-    };
+KitPicker_OnSelChanged = {
+    private _idx = lbCurSel COMBO;
+    if (_idx < 0) exitWith {USEBUTTON ctrlEnable false;};
 
-    _data = COMBO lbData _idx;
-    if (_data == "") exitWith
-    {
-        USEBUTTON ctrlEnable false;
-    };
+    private _data = COMBO lbData _idx;
+    if (_data == "") exitWith {USEBUTTON ctrlEnable false;};
     USEBUTTON ctrlEnable true;
 };
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

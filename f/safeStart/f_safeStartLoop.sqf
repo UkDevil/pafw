@@ -1,6 +1,4 @@
-// F3 - Safe Start, Server Loop
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-//===========================================================================
+// Safe Start, Server Loop
 
 // Run the loop only on the server
 if !(isServer) exitWith {};
@@ -9,27 +7,26 @@ if !(isServer) exitWith {};
 sleep 1;
 
 while {f_var_mission_timer > 0} do {
+    // Broadcast remaining time to players
+    [["SafeStart",[format["Time Remaining: %1 min",f_var_mission_timer]]],"bis_fnc_showNotification",true] call BIS_fnc_MP;
 
-	// Broadcast remaining time to players
-	[["SafeStart",[format["Time Remaining: %1 min",f_var_mission_timer]]],"bis_fnc_showNotification",true] call BIS_fnc_MP;
+    uisleep 60; // Sleep 60 seconds
 
-	uisleep 60; // Sleep 60 seconds
+    // If mission timer has been terminated by admin briefing, simply exit
+    if (f_var_mission_timer < 0) exitWith {};
 
-	// If mission timer has been terminated by admin briefing, simply exit
-	if (f_var_mission_timer < 0) exitWith {};
-
-	// Reduce the mission timer by one
-	f_var_mission_timer = f_var_mission_timer - 1;
-	publicVariable "f_var_mission_timer";
+    // Reduce the mission timer by one
+    f_var_mission_timer = f_var_mission_timer - 1;
+    publicVariable "f_var_mission_timer";
 };
 
 //Once the mission timer has reached 0, disable the safeties
 if (f_var_mission_timer == 0) then {
-		// Broadcast message to players
-		[["SafeStartMissionStarting",["Mission starting now!"]],"bis_fnc_showNotification",true] call BIS_fnc_MP;
+    // Broadcast message to players
+    [["SafeStartMissionStarting",["Mission starting now!"]],"bis_fnc_showNotification",true] call BIS_fnc_MP;
 
-		// Remotely execute script to disable safety for all selectable units
-		[[false],"f_fnc_safety",playableUnits + switchableUnits] call BIS_fnc_MP;
+    // Remotely execute script to disable safety for all selectable units
+    [[false],"f_fnc_safety",playableUnits + switchableUnits] call BIS_fnc_MP;
 };
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

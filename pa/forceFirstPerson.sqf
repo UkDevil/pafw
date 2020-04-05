@@ -1,18 +1,16 @@
 if (isServer) exitWith {};
 
 [] spawn {
-	while {true} do
-	{
-		waitUntil { ( cameraView == "External" ) };
-
-		if ( (vehicle player) == player ) then // if player isn't inside a vehicle
-		{
-		player switchCamera "Internal";
-		systemChat "Third Person View is not allowed."; // keep message local to player
-		};
-
-		uiSleep 0.5; // lag won't mess with the timing
-	};
+    while {true} do {
+        waitUntil { ( cameraView == "External" ) };
+        // if player isn't inside a vehicle
+        if ( (vehicle player) == player ) then {
+            player switchCamera "Internal";
+            // keep message local to player
+            systemChat "Third Person View is not allowed.";
+        };
+        uiSleep 0.5; // lag won't mess with the timing
+    };
 };
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

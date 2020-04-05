@@ -210,15 +210,6 @@
         <Spanish> ¡No estás autorizado a utilizar este vehículo! </Spanish>
         <French> Vous n’êtes pas autorisé à acceder à ce véhicule! </French>
       </Key>
-      <Key ID="STR_f_mapClickTeleportAction">
-        <English> Teleport </English>
-      </Key>
-      <Key ID="STR_f_mapClickTeleportSelect">
-        <English> Click on the map to set teleport coordinates. </English>
-      </Key>
-      <Key ID="STR_f_mapClickTeleportDone">
-        <English> You have been moved to the selected location. </English>
-      </Key>
        <Key ID="STR_f_mapClickHALOAction">
         <English> HALO </English>
       </Key>

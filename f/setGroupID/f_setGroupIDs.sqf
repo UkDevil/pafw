@@ -1,12 +1,8 @@
-// F3 - Set Group IDs
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==========================================================================
+// Set Group IDs
 
 // OPEN THE ARRAY CONTAING ALL GROUPS
 // Do not comment or delete this line!
-_groups = [
-
-// ==========================================================================
+private _groups = [
 
 // GROUP IDs: BLUFOR > NATO
 // Automatically assigns intelligible names to groups
@@ -60,8 +56,6 @@ _groups = [
 ["GrpNATO_TH8","NATO TH8 -"],
 ["GrpNATO_AH1","NATO AH1 -"],
 
-// ==========================================================================
-
 // GROUP IDs: BLUFOR > FIA
 // Automatically assigns intelligible names to groups
 
@@ -113,8 +107,6 @@ _groups = [
 ["GrpFIA_TH7","FIA TH7 -"],
 ["GrpFIA_TH8","FIA TH8 -"],
 ["GrpFIA_AH1","FIA AH1 -"],
-
-// ==========================================================================
 
 // GROUP IDs: OPFOR > CSAT
 // Automatically assigns intelligible names to groups
@@ -168,8 +160,6 @@ _groups = [
 ["GrpCSAT_TH8","CSAT TH8 -"],
 ["GrpCSAT_AH1","CSAT AH1 -"],
 
-// ==========================================================================
-
 // GROUP IDs: OPFOR > FIA
 // Automatically assigns intelligible names to groups
 
@@ -222,8 +212,6 @@ _groups = [
 ["GrpOFIA_TH8","FIA O TH8 -"],
 ["GrpOFIA_AH1","FIA O AH1 -"],
 
-// ==========================================================================
-
 // GROUP IDs: INDEPENDENT > AAF
 // Automatically assigns intelligible names to groups
 
@@ -275,9 +263,6 @@ _groups = [
 ["GrpAAF_TH7","AAF TH7 -"],
 ["GrpAAF_TH8","AAF TH8 -"],
 ["GrpAAF_AH1","AAF AH1 -"],
-
-
-// ==========================================================================
 
 // GROUP IDs: OPFOR > FIA
 // Automatically assigns intelligible names to groups
@@ -333,16 +318,11 @@ _groups = [
 
 // Always make sure there's no comma after the last entry!
 
-// ==========================================================================
-
 // END OF THE ARRAY CONTAING ALL GROUPS
-// Do not comment or delete this line!
 ];
-
-// ==========================================================================
 
 // SET GROUP IDS
 // Execute setGroupID Function for all factions
 {_x call f_fnc_setGroupID} forEach _groups;
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

@@ -22,4 +22,4 @@ ctrlShow [1310, !ctrlVisible 1310];
 ctrlShow [1300, !ctrlVisible 1300];
 ctrlShow [1305, !ctrlVisible 1305];
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

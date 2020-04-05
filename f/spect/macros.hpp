@@ -1,6 +1,4 @@
-// F3 - Spectator Script
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ====================================================================================
+// Spectator Script
 // Quick defines to make it less annoying.
 #define F_CAM_DISPLAY 9228
 #define F_CAM_HELPFRAME 1300

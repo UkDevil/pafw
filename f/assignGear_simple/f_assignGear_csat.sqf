@@ -1,43 +1,44 @@
 // klausman's simplified assignGear - CSAR (OPF_F) Faction
+
 // List of commonly-used types of units:
-//  co	- commander
-//  dc 	- deputy commander / squad leader
-//  m 	- medic
-//  ftl	- fire team leader
-//  ar 	- automatic rifleman
-//  aar	- assistant automatic rifleman
-//  rat	- rifleman (AT)
-//  dm	- designated marksman
-//  mmgg	- medium mg gunner
-//  mmgag	- medium mg assistant
-//  matg	- medium AT gunner
-//  matag	- medium AT assistant
-//  hmgg	- heavy mg gunner (deployable)
-//  hmgag	- heavy mg assistant (deployable)
-//  hatg	- heavy AT gunner (deployable)
-//  hatag	- heavy AT assistant (deployable)
-//  mtrg	- mortar gunner (deployable)
-//  mtrag	- mortar assistant (deployable)
-//  msamg	- medium SAM gunner
-//  msamag	- medium SAM assistant gunner
-//  hsamg	- heavy SAM gunner (deployable)
-//  hsamag	- heavy SAM assistant gunner (deployable)
-//  sn	- sniper
-//  sp	- spotter (for sniper)
-//  vc	- vehicle commander
-//  vg	- vehicle gunner
-//  vd	- vehicle driver (repair)
-//  pp	- air vehicle pilot / co-pilot
-//  pcc	- air vehicle co-pilot (repair) / crew chief (repair)
-//  pc	- air vehicle crewman
-//  eng	- engineer (demo)
-//  engm	- engineer (mines)
-//  uav	- UAV operator
-//  div	- diver
-//  r 	- rifleman
-//  car	- carabineer
-//  smg	- submachinegunner
-//  gren	- grenadier
+//  co  - commander
+//  dc  - deputy commander / squad leader
+//  m   - medic
+//  ftl - fire team leader
+//  ar  - automatic rifleman
+//  aar - assistant automatic rifleman
+//  rat - rifleman (AT)
+//  dm  - designated marksman
+//  mmgg    - medium mg gunner
+//  mmgag   - medium mg assistant
+//  matg    - medium AT gunner
+//  matag   - medium AT assistant
+//  hmgg    - heavy mg gunner (deployable)
+//  hmgag   - heavy mg assistant (deployable)
+//  hatg    - heavy AT gunner (deployable)
+//  hatag   - heavy AT assistant (deployable)
+//  mtrg    - mortar gunner (deployable)
+//  mtrag   - mortar assistant (deployable)
+//  msamg   - medium SAM gunner
+//  msamag  - medium SAM assistant gunner
+//  hsamg   - heavy SAM gunner (deployable)
+//  hsamag  - heavy SAM assistant gunner (deployable)
+//  sn  - sniper
+//  sp  - spotter (for sniper)
+//  vc  - vehicle commander
+//  vg  - vehicle gunner
+//  vd  - vehicle driver (repair)
+//  pp  - air vehicle pilot / co-pilot
+//  pcc - air vehicle co-pilot (repair) / crew chief (repair)
+//  pc  - air vehicle crewman
+//  eng - engineer (demo)
+//  engm    - engineer (mines)
+//  uav - UAV operator
+//  div - diver
+//  r   - rifleman
+//  car - carabineer
+//  smg - submachinegunner
+//  gren    - grenadier
 
 // NOTE: Those strings are abritrary. That is, if you want to have any
 // random name for unit types, you can make them up. E.g., if you have
@@ -55,8 +56,8 @@
 // multiple different types of Automatic Rifleman, for example.
 
 // Define a few shorthand variables from parameters
-private _typeofUnit = toLower (_this select 0);	// "co", "ar" etc.
-private _unit = _this select 1;			// E.g. B A 1-3 (bluefor, Alpha 1-3)
+private _typeofUnit = toLower (_this select 0); // "co", "ar" etc.
+private _unit = _this select 1;         // E.g. B A 1-3 (bluefor, Alpha 1-3)
 
 // Remove everything
 removeBackpack _unit;
@@ -121,4 +122,4 @@ switch (_typeofUnit) do
 // Make sure the primary weapon is in the unit's hands.
 _unit selectweapon primaryweapon _unit;
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

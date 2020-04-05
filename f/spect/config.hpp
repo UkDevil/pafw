@@ -439,7 +439,9 @@ class RscSpectButton {
     style = 0x02 + 160;
     text = "";
     type = 1;
-    blinkingPeriod = 0; // Time in which control will fade out and back in. Use 0 to disable the effect.
+    // Time in which control will fade out and back in. Use 0 to disable the
+    // effect.
+    blinkingPeriod = 0; 
     tooltipColorShade[] = BACKGROUND_COLOR; // Tooltip background color
     tooltipColorText[] = PRIMARYCOLOR; // Tooltip text color
     tooltipColorBox[] = PRIMARYCOLOR; // Tooltip frame color

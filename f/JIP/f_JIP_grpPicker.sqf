@@ -14,8 +14,7 @@ GrpPickInit =
     {
         private "_grp";
         _grp = _x;
-        if (side(_grp) == side(player) && {(faction (leader _grp) == faction player ) && (alive (leader _grp)) && !(_grp == group player)}) then
-        {
+        if (side(_grp) == side(player) && {(faction (leader _grp) == faction player ) && (alive (leader _grp)) && !(_grp == group player)}) then {
             GrpList set [GrpCount, _grp];
             private "_idx";
             _idx = COMBO lbAdd str(_grp); COMBO lbSetValue [_idx, GrpCount + 1];
@@ -30,12 +29,12 @@ GrpPickInit =
         };
     } forEach allGroups;
 
-     GrpList set [GrpCount, grpNull];
-     _idx = COMBO lbAdd "NONE"; COMBO lbSetValue [_idx, GrpCount + 1];
+    GrpList set [GrpCount, grpNull];
+    private _idx = COMBO lbAdd "NONE";
+    COMBO lbSetValue [_idx, GrpCount + 1];
 
-    _sel = player getVariable "GrpPicker_Selection";
-    if (!isNil '_sel') then
-    {
+    private _sel = player getVariable "GrpPicker_Selection";
+    if (!isNil '_sel') then {
         COMBO lbSetCurSel _sel;
     };
 };
@@ -68,7 +67,7 @@ GrpPicker_OnSelChanged =
         USEBUTTON ctrlEnable false;
     };
 
-    _data = COMBO lbValue _idx;
+    private _data = COMBO lbValue _idx;
     if (_data == 0) exitWith
     {
         USEBUTTON ctrlEnable false;
@@ -76,4 +75,4 @@ GrpPicker_OnSelChanged =
     USEBUTTON ctrlEnable true;
 };
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

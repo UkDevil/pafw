@@ -51,4 +51,4 @@ if(f_cam_mapMode == 2) then
 };
 true
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

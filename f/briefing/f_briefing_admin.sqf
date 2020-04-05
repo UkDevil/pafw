@@ -1,13 +1,8 @@
-// F3 - Briefing
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==========================================================================
+// Briefing
 
 // ADD MISSION MAKER NOTES SECTIONS
 // All text added below will only be visible to the current admin
-
 _customText = "";
-
-// ==========================================================================
 
 // ADMIN BRIEFING
 // This is a generic section displayed only to the ADMIN
@@ -19,22 +14,18 @@ This briefing section can only be seen by the current admin.
 <br/><br/>
 ";
 
-// ==========================================================================
-
 // MISSION-MAKER NOTES
 // This section displays notes made by the mission-maker for the ADMIN
 
 if (_customText != "") then {
-	_briefing ="
-	<br/>
-	<font size='18'>MISSION-MAKER NOTES</font><br/>
-	Notes and messages from the mission-maker:<br/>
-	";
+    _briefing ="
+    <br/>
+    <font size='18'>MISSION-MAKER NOTES</font><br/>
+    Notes and messages from the mission-maker:<br/>
+    ";
 
-	_briefing = _briefing + _customText + "<br/><br/>";
+    _briefing = _briefing + _customText + "<br/><br/>";
 };
-
-// ==========================================================================
 
 // ENDINGS
 // This block of code collects all valid endings and formats them properly
@@ -45,12 +36,12 @@ _endings = [];
 
 _i = 1;
 while {true} do {
-	_title = getText (missionconfigfile >> "CfgDebriefing" >> format ["end%1",_i] >> "title");
-	_description = getText (missionconfigfile >> "CfgDebriefing" >> format ["end%1",_i] >> "description");
-	if (_title == "") exitWith {};
-	_ending = [_i,_title,_description];
-	_endings append ([_ending]);
-	_i = _i + 1;
+    _title = getText (missionconfigfile >> "CfgDebriefing" >> format ["end%1",_i] >> "title");
+    _description = getText (missionconfigfile >> "CfgDebriefing" >> format ["end%1",_i] >> "description");
+    if (_title == "") exitWith {};
+    _ending = [_i,_title,_description];
+    _endings append ([_ending]);
+    _i = _i + 1;
 };
 
 // Create the briefing section to display the endings
@@ -61,17 +52,14 @@ These endings are available. To trigger an ending click on its link.<br/><br/>
 ";
 
 {
-	_end = _this select 0;
-	_briefing = _briefing + format [
-	"<execute expression=""[[%1],'f_fnc_mpEnd',false] spawn BIS_fnc_MP;"">'end%1'</execute> - %2:<br/>
-	%3<br/><br/>"
-	,_x select 0,_x select 1,_x select 2];
+    _end = _this select 0;
+    _briefing = _briefing + format [
+    "<execute expression=""[[%1],'f_fnc_mpEnd',false] spawn BIS_fnc_MP;"">'end%1'</execute> - %2:<br/>
+    %3<br/><br/>"
+    ,_x select 0,_x select 1,_x select 2];
 } forEach _endings;
 
-// ==========================================================================
-
 // SAFE START SECTION
-
 _briefing = _briefing + "
 <font size='18'>SAFE START CONTROL</font><br/>
 |- <execute expression=""f_var_mission_timer = f_var_mission_timer + 1; publicVariable 'f_var_mission_timer'; hintsilent format ['Mission Timer: %1',f_var_mission_timer];"">
@@ -99,15 +87,13 @@ hintsilent 'Safety off!' "">
 Force safety off for all players</execute><br/><br/>
 ";
 
-// ==========================================================================
 
 // ADD ZEUS SUPPORT SECTION
-
 _briefing = _briefing + "
 <font size='18'>ZEUS SUPPORT</font><br/>
 <execute expression=""
 if !(isNull (getAssignedCuratorLogic player)) then {hintsilent 'ZEUS already assigned!'} else {
-	[[player,true],'f_fnc_zeusInit',false] spawn BIS_fnc_MP; hintsilent 'Curator assigned.';
+    [[player,true],'f_fnc_zeusInit',false] spawn BIS_fnc_MP; hintsilent 'Curator assigned.';
 };"">Assign ZEUS to host</execute>.<br/>
 
 |- <execute expression=""
@@ -115,7 +101,7 @@ if (isNull (getAssignedCuratorLogic player)) then {hintsilent 'Assign ZEUS first
 
 |- <execute expression=""
 if (isNull (getAssignedCuratorLogic player)) then {hintsilent 'Assign ZEUS first!'} else {
-	[[player,true,true],'f_fnc_zeusAddObjects',false] spawn BIS_fnc_MP; hintsilent 'Assigned control over all group leaders and empty vehicles.'};"">
+    [[player,true,true],'f_fnc_zeusAddObjects',false] spawn BIS_fnc_MP; hintsilent 'Assigned control over all group leaders and empty vehicles.'};"">
 Add all group leaders and empty vehicles</execute>.<br/>
 
 |- <execute expression=""
@@ -129,12 +115,8 @@ if (isNull (getAssignedCuratorLogic player)) then {hintsilent 'Assign ZEUS first
 <br/>
 ";
 
-// ==========================================================================
 
 // CREATE DIARY ENTRY
-
 player createDiaryRecord ["diary", ["Admin",_briefing]];
 
-// ==========================================================================
-
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

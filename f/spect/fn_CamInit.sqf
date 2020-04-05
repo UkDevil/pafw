@@ -1,98 +1,73 @@
-// F3 - Spectator Script
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==========================================================================
-// params
+// Spectator Script
 _this spawn {
+
 _unit = [_this, 0, player,[objNull]] call BIS_fnc_param;
 _oldUnit = [_this, 1, objNull,[objNull]] call BIS_fnc_param;
 _forced = [_this, 4, false,[false]] call BIS_fnc_param;
 _isJIP = false;
-if (isNil "f_var_JIP_Spectate") then {f_var_JIP_Spectate = false}; // JIP players go into spectate straight away?
+
+if (isNil "f_var_JIP_Spectate") then {
+    f_var_JIP_Spectate = false
+};
 
 // if they are jip, these are null
-if(isNull _unit ) then {_unit = cameraOn;_isJIP=true;};
+if(isNull _unit ) then {
+    _unit = cameraOn;_isJIP=true;
+};
+
 // escape the script if you are not a seagull unless forced
 if (typeof _unit != "seagull" && (isnull _oldUnit && (!f_var_JIP_Spectate || time < 10)) || !hasInterface) ExitWith { ["F_ScreenSetup"] call BIS_fnc_blackIn;};
-// disable this to instantly switch to the spectator script.
-//waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true] || isNull (_oldUnit) || _isJIP};
-
 
 // ==========================================================================
 
-if(!isnil "BIS_fnc_feedback_allowPP") then
-{
-  // disable effects death effects
+if(!isnil "BIS_fnc_feedback_allowPP") then {
+  // disable death effects
   BIS_fnc_feedback_allowPP = false;
 };
 
-if(_isJIP) then
-{
+if(_isJIP) then {
   ["F_ScreenSetup",false] call BIS_fnc_blackOut;
   systemChat "Initilizing Spectator Script";
 };
+
 []spawn {
-	uiSleep 2;
-	["F_ScreenSetup"] call BIS_fnc_blackIn;
+    uiSleep 2;
+    ["F_ScreenSetup"] call BIS_fnc_blackIn;
 };
+
 // disable PA clientside caching
 if (!isnil "handle_pacaching1") then {
-	[handle_pacaching1] call CBA_fnc_removePerFrameHandler;
-	[handle_pacaching2] call CBA_fnc_removePerFrameHandler;
-	{
-		{
-			_x hideobject false; _x enablesimulation true;
-		}foreach units _x;
-	}foreach allgroups;
+    [handle_pacaching1] call CBA_fnc_removePerFrameHandler;
+    [handle_pacaching2] call CBA_fnc_removePerFrameHandler;
+    {
+        {
+            _x hideobject false; _x enablesimulation true;
+        } foreach units _x;
+    } foreach allgroups;
 };
-// Create a Virtual Unit to act as our player to make sure we get to keep Draw3D
-if(isNil "f_cam_VirtualCreated") then
-{
-// Get a position in which to create the virtual unit
-_pos = [random(5),random(5),random(3) + 5 + (count alldeadmen) * 5];
-createCenter sideLogic;
-_newGrp = createGroup sideLogic;
-_newGrp setvariable ["f_cacheExcl", true,true];
-_newUnit = _newGrp createUnit ["VirtualCurator_F", _pos, [], 0, "NONE"];
-_newUnit allowDamage false;
-_newUnit hideObjectGlobal true;
-_newUnit enableSimulationGlobal false;
-_newUnit setpos _pos;
-selectPlayer _newUnit;
-waituntil{player == _newUnit};
-deleteVehicle _unit;
-f_cam_VirtualCreated = true;
+
+// Create a Virtual Unit to act as our player to make sure we get to keep
+// Draw3D
+if(isNil "f_cam_VirtualCreated") then {
+    // Get a position in which to create the virtual unit
+    _pos = [random(5),random(5),random(3) + 5 + (count alldeadmen) * 5];
+    createCenter sideLogic;
+    _newGrp = createGroup sideLogic;
+    _newUnit = _newGrp createUnit ["VirtualCurator_F", _pos, [], 0, "NONE"];
+    _newUnit allowDamage false;
+    _newUnit hideObjectGlobal true;
+    _newUnit enableSimulationGlobal false;
+    _newUnit setpos _pos;
+    selectPlayer _newUnit;
+    waituntil{player == _newUnit};
+    deleteVehicle _unit;
+    f_cam_VirtualCreated = true;
 };
+
 // ==========================================================================
-// Set spectator mode for whichever radio system is in use
-switch (f_var_radios) do {
-// ACRE
-case 1: {
-[true] call acre_api_fnc_setSpectator;
-};
-// TFR
-case 2: {
+// Set spectator mode for radio system
 [player, true] call TFAR_fnc_forceSpectator;
-};
-case 3: {
-[true] call acre_api_fnc_setSpectator;
-};
-};
-// ==========================================================================
-// enable all factions but your owns groupMarkers. // DISABLED.
-/*
-_oldUnit spawn {
-_factions = [];
-{
-if(!(faction (leader _x) in _factions)) then
-{
-_factions = _factions + [faction (leader _x)];
-};
-} foreach allGroups;
-_factions = _factions - [faction _this];
-{
-[toLower _x] execVM "f\groupMarkers\f_setLocalGroupMarkers.sqf";
-} foreach _factions;
-};*/
+
 // ==========================================================================
 _listBox = 2100;
 lbClear _listBox;
@@ -148,42 +123,34 @@ f_cam_empty_color = [sideUnknown] call bis_fnc_sideColor;
 // ==========================================================================
 f_cam_listUnits = [];
 f_cam_ToggleFPCamera = {
-f_cam_toggleCamera = !f_cam_toggleCamera;
-if(f_cam_toggleCamera) then
-{
-f_cam_mode = 1; //(view)
-f_cam_camera cameraEffect ["terminate", "BACK"];
-f_cam_curTarget switchCamera "internal";
-}
-else
-{
-f_cam_mode = 0;
-f_cam_camera cameraEffect ["internal", "BACK"];
+    f_cam_toggleCamera = !f_cam_toggleCamera;
+    
+    if(f_cam_toggleCamera) then {
+        f_cam_mode = 1; //(view)
+        f_cam_camera cameraEffect ["terminate", "BACK"];
+        f_cam_curTarget switchCamera "internal";
+    } else {
+        f_cam_mode = 0;
+        f_cam_camera cameraEffect ["internal", "BACK"];
+    };
+    
+    call F_fnc_ReloadModes;
 };
-call F_fnc_ReloadModes;
-};
+
 f_cam_GetCurrentCam = {
-_camera = f_cam_camera;
-switch(f_cam_mode) do
-{
-case 0:
-{
-_camera = f_cam_camera; // Standard
+    _camera = f_cam_camera;
+    switch(f_cam_mode) do {
+        case 0:    {    _camera = f_cam_camera; };    // Standard
+        case 1:    {    _camera = cameraOn;};         // FP
+        case 3:    {    _camera = f_cam_freecamera;}; // Freecam
+    };
+    _camera
 };
-case 1:
-{
-_camera = cameraOn; // FP
-};
-case 3:
-{
-_camera = f_cam_freecamera; // freecam
-};
-};
-_camera
-};
+
 // set camera mode (default)
 f_cam_cameraMode = 0;
-// =============================================================================
+
+// =======================================================================
 // create the UI
 createDialog "f_spec_dialog";
 // add keyboard events
@@ -209,8 +176,8 @@ cameraEffectEnableHUD true;
 showCinemaBorder false;
 f_cam_fired = [];
 {
-_event = _x addEventHandler ["fired",{f_cam_fired = f_cam_fired - [objNull];f_cam_fired pushBack (_this select 6)}];
-_x setVariable ["f_cam_fired_eventid",_event];
+    _event = _x addEventHandler ["fired",{f_cam_fired = f_cam_fired - [objNull];f_cam_fired pushBack (_this select 6)}];
+    _x setVariable ["f_cam_fired_eventid",_event];
 } foreach (allunits + vehicles);
 // ==========================================================================
 // spawn sub scripts
@@ -221,4 +188,4 @@ f_cam_updatevalues_script = [] spawn F_fnc_UpdateValues;
 ["f_spect_tags", "onEachFrame", {_this call F_fnc_DrawTags}] call BIS_fnc_addStackedEventHandler;
 };
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4

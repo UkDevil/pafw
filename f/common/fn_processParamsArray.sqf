@@ -1,17 +1,14 @@
-// F3 - Process ParamsArray
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ==========================================================================
-
-_paramArray = paramsArray;
+// Process ParamsArray
+private _paramArray = paramsArray;
 {
-	_paramName =(configName ((missionConfigFile >> "Params") select _forEachIndex));
-	_paramValue = (_paramArray select _forEachIndex);
-	_paramCode = ( getText (missionConfigFile >> "Params" >> _paramName >> "code"));
-	_code = format[_paramCode, _paramValue];
-	call compile _code;
-	if (isServer) then {
-		publicVariable _paramName;
-	};
+    private _paramName =(configName ((missionConfigFile >> "Params") select _forEachIndex));
+    private _paramValue = (_paramArray select _forEachIndex);
+    private _paramCode = ( getText (missionConfigFile >> "Params" >> _paramName >> "code"));
+    private _code = format[_paramCode, _paramValue];
+    call compile _code;
+    if (isServer) then {
+        publicVariable _paramName;
+    };
 } foreach _paramArray;
 
-// vim: tw=72 sts=-1 ts=4 et sw=4
+// vim: sts=-1 ts=4 et sw=4
