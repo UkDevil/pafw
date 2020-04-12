@@ -9,13 +9,10 @@ _state = if (count _this > 1) then {_this select 1} else {true};
 // If this script is executing on the server a small delay is used.
 if (isServer) then {
     sleep 3;
-    if (f_var_debugMode == 1) then{
-        player sideChat "DEBUG (f_fnc_mpEndReciever): This is the server.";
-    };
 };
 
 if (f_var_debugMode == 1) then {
-    player sideChat format ["DEBUG (f_fnc_mpEndReciever): _ending = %1, _state = %2",_ending,_state];
+    [nil, "_ending = %1, _state = %2"] call pa_fnc_bothlog;
 };
 
 // CLEAN-UP OBJECTIVES & TRIGGER CUT-SCENES ETC.
@@ -26,38 +23,32 @@ if (f_var_debugMode == 1) then {
 switch (_ending) do
 {
 // Ending #1
-    case 1:
-    {
+    case 1: {
     // BEGIN Ending 1 custom code
 
     // END Ending 1 custom code
     };
-    case 2:
-    {
+    case 2: {
     // BEGIN Ending 2 custom code
 
     // END Ending 2 custom code
     };
-    case 3:
-    {
+    case 3: {
     // BEGIN Ending 3 custom code
 
     // END Ending 3 custom code
     };
-    case 4:
-    {
+    case 4: {
     // BEGIN Ending 4 custom code
 
     // END Ending 4 custom code
     };
-    case 5:
-    {
+    case 5: {
     // BEGIN Ending 5 custom code
 
     // END Ending 5 custom code
     };
-    case 6:
-    {
+    case 6: {
     // BEGIN Ending 6 custom code
 
     // END Ending 6 custom code
