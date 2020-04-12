@@ -329,6 +329,13 @@ class CfgFunctions {
             class bothlog{};
         };
     };
+
+    class MURK {
+        class nearPlayerGround {
+            file = "murk";
+            class nearPlayerGround{};
+        };
+    };
 };
 
 // Custom Insignia
