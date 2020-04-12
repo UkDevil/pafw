@@ -201,11 +201,6 @@ case "KeyDown": {
         };
         case 20: { // T
             f_cam_tracerOn = !f_cam_tracerOn;
-            if(f_cam_tracerOn) then {
-                systemChat "Tracers on map activated.";
-            } else {
-                systemChat "Tracers on map deactivated.";
-            };
             _handled = true;
         };
         case 22: { // U

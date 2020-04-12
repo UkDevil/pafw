@@ -27,7 +27,6 @@ if(!isnil "BIS_fnc_feedback_allowPP") then {
 
 if(_isJIP) then {
   ["F_ScreenSetup",false] call BIS_fnc_blackOut;
-  systemChat "Initilizing Spectator Script";
 };
 
 []spawn {
