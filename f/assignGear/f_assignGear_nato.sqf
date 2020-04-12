@@ -952,10 +952,6 @@ switch (_typeofUnit) do {
              " Unit:%1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit] call pa_fnc_bothlog;
         }
    };
-
-
-// ==========================================================================
-
 // END SWITCH FOR DEFINE UNIT TYPE LOADOUTS
 };
 
