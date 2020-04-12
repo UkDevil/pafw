@@ -34,9 +34,8 @@ _unit setVariable ["f_var_assignGear",_typeofUnit,true];
 // for other scripts to reference.
 _unit setVariable ["f_var_assignGear_done", false, true];
 
-// Debugging output
 if (f_var_debugMode == 1) then {
-  _unit sideChat format ["DEBUG (assignGear.sqf): unit faction: %1",_faction];
+  [nil, "Unit faction: %1",_faction] call pa_fnc_bothlog;
 };
 
 // Any unit with a faction of "blu_f" gets a NATO loadout.
@@ -67,9 +66,8 @@ if (_faction in ["blu_g_f","opf_g_f","ind_g_f"]) then {
   _ff = true;
 };
 
-
 if (!_ff) then {
-   player globalchat format ["DEBUG f\assignGear_simple\fn_assignGear.sqf: Faction '%1' is not known, unit '%2' left untouched.", _faction, _unit];
+    [nil, "Faction '%1' is not known, unit '%2' left untouched." _faction, _unit] call pa_fnc_bothlog;
 };
 
 // vim: sts=-1 ts=4 et sw=4

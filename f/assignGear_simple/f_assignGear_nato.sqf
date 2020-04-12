@@ -66,8 +66,7 @@ removeAllItemsWithMagazines _unit;
 removeAllAssignedItems _unit;
 
 // Depending on _typeofUnit, give them a loadout exported from the ACE Arsenal
-switch (_typeofUnit) do
-{
+switch (_typeofUnit) do {
   // Commanding Officer
   case "co": {
     _unit setUnitLoadout [["hlc_rifle_G36TAC","","","RKSL_optic_EOT552",["hlc_30rnd_556x45_EPR_G36",30],[],""],[],["hlc_pistol_P229R_357Combat","","","",["hlc_10Rnd_357SIG_B_P229",10],[],""],["MNP_CombatUniform_Germany",[["ACE_fieldDressing",15],["ACE_morphine",10],["SmokeShell",1,1],["Chemlight_green",1,1],["hlc_12Rnd_357SIG_B_P226",2,12]]],["MNP_Vest_Germany_2",[["SmokeShellGreen",1,1],["Chemlight_green",1,1],["hlc_30rnd_556x45_EPR_G36",10,30],["hlc_12Rnd_357SIG_B_P226",2,12]]],["YSA_ilbe_Whip_Flecktarn",[["ACE_EntrenchingTool",1],["ACE_MapTools",1],["ACE_microDAGR",1],["rhs_mag_an_m8hc",4,1],["UK3CB_BAF_SmokeShellRed",4,1],["UK3CB_BAF_SmokeShellGreen",4,1],["HandGrenade",4,1],["Laserbatteries",1,1]]],"MNP_Helmet_Germany","G_Aviator",["Laserdesignator","","","",["Laserbatteries",1],[],""],["ItemMap","ItemGPS","TFAR_anprc152","ItemCompass","ItemWatch",""]];
@@ -113,7 +112,7 @@ switch (_typeofUnit) do
   default {
     // the if (true) is necessary due to the way exitWith works
     if (true) exitwith {
-      player globalchat format ["DEBUG (f\assignGear_simple\f_assignGear_nato.sqf): Unit = %1. Gear template %2 does not exist.", _unit, _typeofunit]
+        [nil, " Unit:%1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit] call pa_fnc_bothlog;
     };
   };
 // End of loadouts
