@@ -322,6 +322,12 @@ class CfgFunctions {
             file = "pa";
             class CscGroupmanagement{};
         };
+        class log {
+            file = "pa\log";
+            class rptlog{};
+            class chatlog{};
+            class bothlog{};
+        };
     };
 };
 
