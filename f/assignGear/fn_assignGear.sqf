@@ -44,10 +44,7 @@ private ["_attach1","_attach2","_silencer1","_silencer2","_scope1","_scope2","_s
 
 _unit setVariable ["f_var_assignGear_done",false,true];
 
-// DEBUG
-if (f_var_debugMode == 1) then {
-    _unit sideChat format ["DEBUG (assignGear.sqf): unit faction: %1", _faction];
-};
+[nil, "unit faction: %1", _faction] call pa_fnc_rptlog;
 
 // GEAR: BLUFOR > NATO
 // The following block of code executes only if the unit is in a NATO slot; it
