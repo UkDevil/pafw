@@ -98,11 +98,9 @@ _unit setVariable ["f_var_assignGear_done", true, true];
 
 if (isNil "_carbine") then { 
     //_carbine should exist unless no faction has been called
-    player globalchat format ["DEBUG (assignGear.sqf): Faction %1 is not defined.",_faction];
+    [nil, "Faction %1 has no gear defined.",_faction] call pa_fnc_bothlog;
 } else {
-    if (f_var_debugMode == 1) then  {
-        player sideChat format ["DEBUG (assignGear.sqf): Gear for %1: %1 slot selected.",_unit,_faction,_typeofUnit];
-    };
+    [nil, "Gear for %1: %1 slot selected.",_unit,_faction,_typeofUnit] call pa_fnc_rptlog;
 };
 
 // vim: sts=-1 ts=4 et sw=4
