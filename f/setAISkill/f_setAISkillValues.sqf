@@ -71,15 +71,13 @@ if (!isNil "f_var_civAI") then {
         case resistance: {f_var_skillRes};
         default {99};
     };
+    publicVariable "f_var_skillCiv";
 };
-publicVariable "f_var_skillCiv";
 
 // DEBUG
 if (f_var_debugMode == 1) then {
-    player sideChat format ["DEBUG (f\setAISkill\f_setAISkillAD.sqf): f_skillBLU = %1",f_var_skillBlu];
-    player sideChat format ["DEBUG (f\setAISkill\f_setAISkillAD.sqf): f_skillRES = %1",f_var_skillOpf];
-    player sideChat format ["DEBUG (f\setAISkill\f_setAISkillAD.sqf): f_skillOPF = %1",f_var_skillRes];
-    player sideChat format ["DEBUG (f\setAISkill\f_setAISkillAD.sqf): f_skillCIV = %1",f_var_skillCiv];
+    [nil, "f_var_skillBLU=%1 f_var_skillOpf=%2 f_var_skillRes=%3 f_var_skillCiv=%4",
+     f_var_skillBlu, f_var_skillOpf, f_var_skillRes, f_var_skillCiv] call pa_fnc_bothlog;
 };
 
 // vim: sts=-1 ts=4 et sw=4
