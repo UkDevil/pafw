@@ -79,7 +79,7 @@ if(typeName _grpstemp == "SIDE") then {
 sleep 10;
 
 if (count _grps == 0) exitWith {
-    player GlobalChat format ["DEBUG (f\casualtiesCap\f_CasualtiesCapCheck.sqf): No groups found, _grpstemp = %1, _grps = %2",_grpstemp,_grps];
+    [nil, "No groups found, _grpstemp = %1, _grps = %2",_grpstemp,_grps] call pa_fnc_bothlog;
 };
 
 // CREATE STARTING VALUES
@@ -90,7 +90,7 @@ _started = 0;
 
 // DEBUG
 if (f_var_debugMode == 1) then {
-    player sideChat format ["DEBUG (f\casualtiesCap\f_CasualtiesCapCheck.sqf): _started = %1",_started];
+    [nil, " _started = %1",_started] call pa_fnc_bothlog;
 };
 
 // CHECK IF CASUALTIES CAP HAS BEEN REACHED OR EXCEEDED
@@ -111,7 +111,7 @@ while {true} do {
 
 // DEBUG
     if (f_var_debugMode == 1) then {
-        player sideChat format ["DEBUG (f\casualtiesCap\f_CasualtiesCapCheck.sqf): _remaining = %1",_remaining];
+        [nil, "_remaining = %1",_remaining] call pa_fnc_bothlog;
     };
 
     if (_remaining == 0 || ((_started - _remaining) / _started) >= (_pc / 100)) exitWith {};
@@ -130,6 +130,6 @@ if (typeName _end == typeName {}) exitWith {
     [_end,"bis_fnc_spawn",true] call BIS_fnc_MP;
 };
 
-player GlobalChat format ["DEBUG (f\casualtiesCap\f_CasualtiesCapCheck.sqf): Ending didn't fire, should either be code or scalar. _end = %1, typeName _end: %2",_end,typeName _end];
+[nil, "Ending didn't fire, should either be code or scalar. _end = %1, typeName _end: %2",_end,typeName _end] call fnc_pa_bothlog;
 
 // vim: sts=-1 ts=4 et sw=4
