@@ -7,8 +7,7 @@ private ["_grp", "_unit","_mkrType","_mkrText","_mkrColor","_mkrName","_mkr","_u
 // Using variables passed to the script instance, we will create some local
 // variables:
 call compile format ["
-if(!isnil '%1') then
-{
+if(!isnil '%1') then {
     _unit = %1;
 };
 ",_this select 0];

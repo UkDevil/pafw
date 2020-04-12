@@ -3,8 +3,7 @@
 //Exit if server
 if(isDedicated) exitwith {};
 
-switch (_this select 0) do
-{
+switch (_this select 0) do {
     //Turn safety on
     case true: {
         // Delete bullets from fired weapons

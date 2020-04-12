@@ -4,8 +4,7 @@
 _type = _this select 0;
 _args = _this select 1;
 _handled = true;
-switch (_type) do
-{
+switch (_type) do {
 // ==================================================================
 // handles the mouse.
 case "MouseButtonDown": {
@@ -142,8 +141,7 @@ case "KeyDown": {
     _key = _args select 1;
     _handled = false;
     _zeusKey = -1;
-    if( count (actionKeys "curatorInterface") > 0 ) then
-    {
+    if( count (actionKeys "curatorInterface") > 0 ) then {
         _zeusKey = (actionKeys "curatorInterface") select 0;
     };
     if(!isNull (findDisplay 49)) exitWith {if(_key == 1) then {true}};
@@ -162,13 +160,11 @@ case "KeyDown": {
                     _done = false;
                     // wait until open
                     waitUntil {sleep 0.1;!isNull (findDisplay 312)};
-                    while {!_done} do
-                    {
+                    while {!_done} do {
                         // then wait until its not open
-                        waitUntil {sleep 0.1;isNull (findDisplay 312)};
+                        waitUntil {sleep 0.1; isNull (findDisplay 312)};
                         // check if someone is being remote-controlled
-                        if(isnil "bis_fnc_moduleRemoteControl_unit") then
-                        {
+                        if(isnil "bis_fnc_moduleRemoteControl_unit") then {
                             // if not retoggle
                             [player,player,player,0,true] spawn F_fnc_CamInit;
                             _done = true;

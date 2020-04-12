@@ -15,8 +15,7 @@ if (_isMan) then {
 
     // Medics *additonally* get 25 bandages, 15 morphine, 15 epi, 8 500ml
     // bloodbags and 10 tourniquets
-    if (_typeOfUnit == "m") then
-    {
+    if (_typeOfUnit == "m") then {
         (unitBackpack _unit) addItemCargoGlobal ["ACE_fieldDressing", 25];
         (unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 15];
         (unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine",   15];

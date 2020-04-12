@@ -940,8 +940,7 @@ switch (_typeofUnit) do {
 };
 
     // DEFAULT/UNDEFINED (use RIFLEMAN)
-   default
-   {
+   default {
         _unit addmagazines [_riflemag,7];
         _unit addweapon _rifle;
 

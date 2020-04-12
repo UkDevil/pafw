@@ -2,8 +2,7 @@
 #define COMBO (uiNamespace getVariable "GrpPick_Combo")
 #define USEBUTTON (uiNamespace getVariable "GrpPick_UseBtn")
 
-GrpPickInit =
-{
+GrpPickInit = {
     uiNamespace setVariable ["GrpPick_Dlg", _this select 0];
     uiNamespace setVariable ["GrpPick_Combo", (_this select 0) displayCtrl 1];
     uiNamespace setVariable ["GrpPick_UseBtn", (_this select 0) displayCtrl 3];
@@ -39,8 +38,7 @@ GrpPickInit =
     };
 };
 
-GrpPicker_Pick =
-{
+GrpPicker_Pick = {
     private "_idx";
     _idx = lbCurSel COMBO;
     if (_idx < 0) exitWith {};
@@ -58,20 +56,13 @@ GrpPicker_Pick =
     f_var_JIP_state = 1;
 };
 
-GrpPicker_OnSelChanged =
-{
+GrpPicker_OnSelChanged = {
     private "_idx";
     _idx = lbCurSel COMBO;
-    if (_idx < 0) exitWith
-    {
-        USEBUTTON ctrlEnable false;
-    };
+    if (_idx < 0) exitWith { USEBUTTON ctrlEnable false; };
 
     private _data = COMBO lbValue _idx;
-    if (_data == 0) exitWith
-    {
-        USEBUTTON ctrlEnable false;
-    };
+    if (_data == 0) exitWith { USEBUTTON ctrlEnable false; };
     USEBUTTON ctrlEnable true;
 };
 

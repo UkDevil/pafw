@@ -1,15 +1,13 @@
 // Spectator Script
 _listBox =  2100;
 // updates values for the units listbox.
-f_cam_checkIndex =
-{
+f_cam_checkIndex = {
     {
         _x SetVariable ["f_spect_listBoxIndex",_forEachIndex];
     } foreach f_cam_listUnits;
 };
 
-while {true} do
-{
+while {true} do {
     // make the mini map track the player.
     ctrlMapAnimClear ((findDisplay 9228) displayCtrl 1350);
     ((findDisplay 9228) displayCtrl 1350) ctrlMapAnimAdd [0.3, f_cam_map_zoom,visiblePosition (camTarget f_cam_camera)];

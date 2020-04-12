@@ -20,9 +20,7 @@ if (f_var_debugMode == 1) then {
 // cut-scenes etc. depending on the ending that has been selected. Initially,
 // we identify the desired ending using the parsed value. By default allowed
 // values are: 1,2,3,4,5,6.
-switch (_ending) do
-{
-// Ending #1
+switch (_ending) do{
     case 1: {
     // BEGIN Ending 1 custom code
 

@@ -346,8 +346,7 @@ _backpack = {
     _typeofBackPack = _this select 0;
     _loadout = f_param_backpacks;
     if (count _this > 1) then {_loadout = _this select 1};
-    switch (_typeofBackPack) do
-    {
+    switch (_typeofBackPack) do {
         #include "f_assignGear_csat_b.sqf";
     };
 };
@@ -914,8 +913,7 @@ switch (_typeofUnit) do {
 };
 
     // DEFAULT/UNDEFINED (use RIFLEMAN)
-   default
-   {
+   default {
         _unit addmagazines [_riflemag,7];
         _unit addweapon _rifle;
 

@@ -8,8 +8,7 @@
     if (local _unit && !isplayer _unit && !("acc_flashlight" in primaryWeaponItems _unit)) then {
 
         // Remove laser if equipped
-        if ("acc_pointer_IR" in primaryWeaponItems _unit) then
-        {
+        if ("acc_pointer_IR" in primaryWeaponItems _unit) then {
             _unit removePrimaryWeaponItem "acc_pointer_IR";
         };
 
