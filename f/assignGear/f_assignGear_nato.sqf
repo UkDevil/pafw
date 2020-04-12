@@ -311,7 +311,8 @@ _unit = _this select 1;
 // We check if we're dealing with a soldier or a vehicle
 _isMan = _unit isKindOf "CAManBase";
 
-diag_log format ["PADEBUG: Unit '%1' is a '%2' (man: %3)", _unit, _typeofUnit, _isman];
+[nil, "Unit '%1' is a '%2' (man: %3)", _unit, _typeofUnit, _isman] call pa_fnc_rptlog;
+
 // ==========================================================================
 
 // This block needs only to be run on an infantry unit

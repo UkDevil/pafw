@@ -3,7 +3,7 @@
 // Usage:
 // [category, formatstring, arguments...] call pa_fnc_chatlog;
 //
-// Will log a message to the side chat.
+// Will log a message to the global chat.
 //
 // category: String that describes where the log message is from (e.g. a
 //     subsystem like assignGear. If nil, use the calling script's name.
