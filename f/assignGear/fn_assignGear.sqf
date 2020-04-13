@@ -13,6 +13,7 @@ _ff = false; // Track whether we have found a faction for this unit
 _typeofUnit = toLower (_this select 0);
 _unit = _this select 1;
 
+_isMan = _unit isKindOf "CAManBase";
 _faction = toLower (faction _unit);
 
 if(count _this > 2) then {
