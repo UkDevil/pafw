@@ -1,9 +1,7 @@
-// F3 - Near B Player Function
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ====================================================================================
+// Near Player Function
 
 // DECLARE VARIABLES AND FUNCTIONS
-private ["_ent","_distance","_pos","_cPos","_players","_countP"]; //,"_return"
+private ["_distance","_pos","_cPos","_players","_countP"];
 
 _cPos = (_this select 0);
 if (_cPos in allMapMarkers) then {
@@ -16,8 +14,6 @@ if (_cPos in allMapMarkers) then {
     };
 };
 _distance = _this select 1;
-
-// ====================================================================================
 
 // Create a list of all players
 _players = [];
@@ -48,8 +44,6 @@ _players = [];
        };
    };
 } forEach playableUnits;
-
-// ====================================================================================
 
 // Check whether a player is in the given distance - return true if yes
 if (({_x distance _pos < _distance} count _players) > 0) exitWith {true};

@@ -172,6 +172,13 @@ class Params {
         default = 1;
         code = "pa_param_cscaching = %1";
     };
+    class pa_murk_headless {
+        title = "PA - Enable Headless Client takeover of murk-spawned units";
+        values[] = {0, 1};
+        texts[] = {"Off", "On"};
+        default = 1;
+        code = "pa_murk_headless = %1";
+    }
 };
 // End of Params code blocks.
 // WARNING: DO NOT DELETE OR COMMENT OUT THIS CODE BLOCK

@@ -27,7 +27,7 @@
 // This script is serverside
 if(!isServer) exitWith{};
 
- private ["_countThis","_waitingPeriod","_unit","_spawndistance","_remainingtoattack","_initString","_centerpos","_posarray","_unitArray","_unitGroup","_unitsInGroup","_unitCount","_unitsInGroupAdd","_side"];
+private ["_countThis","_waitingPeriod","_unit","_spawndistance","_remainingtoattack","_initString","_centerpos","_posarray","_unitArray","_unitGroup","_unitsInGroup","_unitsInGroupAdd","_side", "_f3gear"];
 
 // Init
 _countThis = count _this;
@@ -46,28 +46,26 @@ _posarray = [];
 _unitArray = [];
 _unitGroup = group _unit;
 _unitsInGroup = units _unitGroup;
-_unitCount = count _unitsInGroup;
 _unitsInGroupAdd = [];
 _side = side _unitGroup;
 
 while { count units _unitGroup > 0 } do {
     // The currently worked on unit
     _unitsInGroup = units _unitGroup;
-    _unit = _unitsInGroup select 0;
-    _unitCount = count _unitsInGroup;
+    private _unit = _unitsInGroup select 0;
 
     // Check if it is a vehicle
     if ( (vehicle _unit) isKindOf "LandVehicle" OR (vehicle _unit) isKindOf "Air") then {
-        _vcl = vehicle _unit;
+        private _vcl = vehicle _unit;
         _posarray pushback (getpos _vcl);
 
         if (!(_vcl in _unitsInGroupAdd) AND (typeOf _vcl != "")) then {
             _unitsInGroupAdd set [count _unitsInGroupAdd, _vcl];
-            _unitCrewArray = [];
-            _crew = crew _vcl;
+            private _unitCrewArray = [];
+            private _crew = crew _vcl;
             { _unitCrewArray set [count _unitCrewArray, typeOf _x]; } forEach _crew;
 
-            _unitInfoArray = [
+            private _unitInfoArray = [
                 typeOf _vcl,
                 getPosatl _vcl,
                 getDir _vcl,
@@ -84,7 +82,7 @@ while { count units _unitGroup > 0 } do {
     // Otherwise its infantry
     else {
         _posarray pushback (getpos _unit);
-        _unitInfoArray = [
+        private _unitInfoArray = [
             typeOf _unit,
             getPosatl _unit,
             getDir _unit,
@@ -105,7 +103,7 @@ deleteGroup _unitGroup;
 
 // *WARNING* BIS FUNCTION RIPOFF - Taken from fn_returnConfigEntry as it is
 // needed for turrets and shortened a bit
-_fnc_returnConfigEntry = {
+private _fnc_returnConfigEntry = {
     private ["_config", "_entryName","_entry", "_value"];
     _config = _this select 0;
     _entryName = _this select 1;
@@ -130,7 +128,7 @@ _fnc_returnConfigEntry = {
 
 // *WARNING* BIS FUNCTION RIPOFF - Taken from fn_fnc_returnVehicleTurrets and
 // shortened a bit
-_fnc_returnVehicleTurrets = {
+private _fnc_returnVehicleTurrets = {
     private ["_entry","_turrets", "_turretIndex"];
     _entry = _this select 0;
     _turrets = [];
@@ -160,43 +158,44 @@ _fnc_returnVehicleTurrets = {
     _turrets;
 };
 
-_fnc_moveInTurrets = {
-    private ["_turrets","_path","_i"];
-    _turrets = _this select 0;
-    _path = _this select 1;
-    _currentCrewMember = _this select 2;
-    _crew = _this select 3;
-    _spawnUnit = _this select 4;
-    _i = 0;
+private _fnc_moveInTurrets = {
+    private _turrets = _this select 0;
+    private _path = _this select 1;
+    private _currentCrewMember = _this select 2;
+    private _crew = _this select 3;
+    private _spawnUnit = _this select 4;
+    private _i = 0;
     while {_i < (count _turrets) AND _currentCrewMember < count _crew} do {
-         _turretIndex = _turrets select _i;
-        _thisTurret = _path + [_turretIndex];
+        private _turretIndex = _turrets select _i;
+        private _thisTurret = _path + [_turretIndex];
         (_crew select _currentCrewMember) moveInTurret [_spawnUnit, _thisTurret]; _currentCrewMember = _currentCrewMember + 1;
         // Spawn units into subturrets.
-        [_turrets select (_i + 1), _thisTurret, _currentCrewmember, _crew, _spawnUnit] call _fnc_moveInTurrets;
+        [_turrets select (_i + 1), _thisTurret, _currentCrewMember, _crew, _spawnUnit] call _fnc_moveInTurrets;
         _i = _i + 2;
     };
 };
 
-_fnc_spawnUnit = {
+private _fnc_spawnUnit = {
     // We need to pass the old group so we can copy waypoints from it, the rest
     // we already know
-    _oldGroup = _this select 0;
-    _newGroup = createGroup (_this select 1);
+    private _oldGroup = _this select 0;
+    private _newGroup = createGroup (_this select 1);
+    // Disable ACEX Headless messing with this group until we're done
+    _newGroup setVariable ["acex_headless_blacklist", true];
     // If the old group doesn't have any units in it its a spawned group rather
     // than respawned
     if ( count (units _oldGroup) == 0) then {
         deleteGroup _oldGroup;
     };
     {
-        _spawnUnit = nil;
-        _unitType = _x select 0;
-        _unitPos  = _x select 1;
-        _unitDir  = _x select 2;
-        _unitName = _x select 3;
-        _unitSkill = _x select 4;
-        _unitRank = _x select 5;
-        _unitCrew = _x select 6;
+        private _spawnUnit = nil;
+        private _unitType = _x select 0;
+        private _unitPos  = _x select 1;
+        private _unitDir  = _x select 2;
+        private _unitName = _x select 3;
+        private _unitSkill = _x select 4;
+        private _unitRank = _x select 5;
+        private _unitCrew = _x select 6;
         // Check if the unit has a crew, if so we know its a vehicle
         if (count _unitCrew > 0) then {
             if (_unitPos select 2 >= 10) then {
@@ -209,7 +208,7 @@ _fnc_spawnUnit = {
                 _spawnUnit setfuel 0;
             };
             // Create the entire crew
-            _crew = [];
+            private _crew = [];
             {
                 _unit = _newGroup createUnit [_x, getPos _spawnUnit, [], 0, "NONE"];
                  _crew set [count _crew, _unit];
@@ -217,12 +216,12 @@ _fnc_spawnUnit = {
             // We assume that all vehicles have a driver, the first one of the crew
             (_crew select 0) moveInDriver _spawnUnit;
             // Count the turrets and move the men inside
-            _turrets = [configFile >> "CfgVehicles" >> _unitType >> "turrets"] call _fnc_returnVehicleTurrets;
+            private _turrets = [configFile >> "CfgVehicles" >> _unitType >> "turrets"] call _fnc_returnVehicleTurrets;
             [_turrets, [], 1, _crew, _spawnUnit] call _fnc_moveInTurrets;
         }
         // Otherwise its infantry
         else {
-            _spawnUnit = _newGroup createUnit [_unitType,_unitPos, [], 0, "NONE"];
+            private _spawnUnit = _newGroup createUnit [_unitType,_unitPos, [], 0, "NONE"];
             commandstop _spawnUnit;
         };
         // Set all the things common to the spawned unit
@@ -240,7 +239,7 @@ _fnc_spawnUnit = {
         commandstop _spawnUnit;
         //disable ACE unconcious
         [_spawnUnit] spawn {
-            _spawnUnit = _this select 0;
+            private _spawnUnit = _this select 0;
             _spawnUnit setvariable ["ace_medical_enableUnconsciousnessAI",0,false];
         };
         if (!isNil _unitName) then {
@@ -263,10 +262,16 @@ _fnc_spawnUnit = {
     if (_remainingtoattack > 0) then {
         _newGroup setvariable ["remainingtoattack", _remainingtoattack];
         {
-            _EHleaveBIdx = _x addEventHandler ["killed", {_this select 0 execVM "murk\leaveBuilding.sqf";}];
+            _x addEventHandler ["killed", {_this select 0 execVM "murk\leaveBuilding.sqf";}];
         } foreach units _newGroup;
     };
+    // Enable ACEX Headless for this group and trigger a rebalance pass
+    if (pa_murk_headless == 1) then {
+        _newGroup setVariable ["acex_headless_blacklist", false];
+        [false] call acex_headless_fnc_rebalance;
+    };
 
+    // Have to return the new group
     _newGroup;
 };
 
@@ -291,20 +296,19 @@ while {!([_centerpos, _spawndistance] call murk_fnc_nearPlayerGround)} do {
 // Spawn Modes
 
 // ONCE MODE
- _unitGroup = [_unitGroup,_side] call _fnc_spawnUnit;
-
+_unitGroup = [_unitGroup,_side] call _fnc_spawnUnit;
 
 // delete and re-cache when no players near
 [_unitGroup,_f3gear,_spawndistance,_remainingtoattack,_initString,_centerpos,_waitingPeriod] spawn {
-    _unitGroup = _this select 0;
-    _f3gear = _this select 1;
-    _spawndistance = _this select 2;
-    _remainingtoattack = _this select 3;
-    _initString = _this select 4;
-    _centerpos = _this select 5;
-    _waitingPeriod = _this select 6;
-    _alivedudes = [];
-    _uncachedistance = _spawndistance + 100 + (0.33 * _spawndistance);
+    private _unitGroup = _this select 0;
+    private _f3gear = _this select 1;
+    private _spawndistance = _this select 2;
+    private _remainingtoattack = _this select 3;
+    private _initString = _this select 4;
+    private _centerpos = _this select 5;
+    private _waitingPeriod = _this select 6;
+    private _alivedudes = [];
+    private _uncachedistance = _spawndistance + 100 + (0.33 * _spawndistance);
 
     while {([_centerpos, _uncachedistance] call murk_fnc_nearPlayerGround)} do {
         sleep _waitingPeriod;
@@ -319,7 +323,7 @@ while {!([_centerpos, _spawndistance] call murk_fnc_nearPlayerGround)} do {
     } foreach (units _unitGroup);
 
     if (count _alivedudes > _remainingtoattack) then {
-        _unit = _alivedudes select 0;
+        private _unit = _alivedudes select 0;
         [_unit,_f3gear,_spawndistance,_remainingtoattack,_initString] execVM "murk\murk_building.sqf";
     } else {
         //delete group if they already started to leavebuilding.
