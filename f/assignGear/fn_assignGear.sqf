@@ -45,7 +45,8 @@ _unit setVariable ["f_var_assignGear_done", false, true];
 // automatically includes a file which contains the appropriate equipment
 // data.
 if (_faction == "blu_f") then {
-#include "f_assignGear_nato.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear\f_assignGear_nato.sqf";
+    _ff=true;
 };
 
 // GEAR: OPFOR > CSAT
@@ -53,7 +54,8 @@ if (_faction == "blu_f") then {
 // automatically includes a file which contains the appropriate equipment
 // data.
 if (_faction == "opf_f") then {
-#include "f_assignGear_csat.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear\f_assignGear_csat.sqf";
+    _ff=true;
 };
 
 // GEAR: INDEPEDENT > AAF
@@ -61,7 +63,8 @@ if (_faction == "opf_f") then {
 // automatically includes a file which contains the appropriate equipment
 // data.
 if(_faction == "ind_f") then {
-#include "f_assignGear_aaf.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear\f_assignGear_aaf.sqf";
+    _ff=true;
 };
 
 // GEAR: FIA
@@ -69,7 +72,8 @@ if(_faction == "ind_f") then {
 // faction); it automatically includes a file which contains the appropriate
 // equipment data.
 if (_faction in ["blu_g_f","opf_g_f","ind_g_f"]) then {
-#include "f_assignGear_fia.sqf"
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear\f_assignGear_fia.sqf";
+    _ff=true;
 };
 
 // PA: Add medical supplies to unit
