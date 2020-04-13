@@ -88,12 +88,10 @@ _unit setVariable ["f_var_assignGear_done", true, true];
 // ERROR CHECKING
 // If the faction of the unit cannot be defined, the script exits with an
 // error.
-
-if (isNil "_carbine") then { 
-    //_carbine should exist unless no faction has been called
-    [nil, "Faction %1 has no gear defined.",_faction] call pa_fnc_bothlog;
+if (_ff) then {
+    ["f/aG/fn_assignGear.sqf", "%1/%2 loadout: '%3'", _unit, _faction, _typeofUnit] call pa_fnc_rptlog;
 } else {
-    [nil, "Gear for %1: %1 slot selected.",_unit,_faction,_typeofUnit] call pa_fnc_rptlog;
+    ["f/aG/fn_assignGear.sqf", "%1/%2 has no loadout defined.", _unit, _faction] call pa_fnc_bothlog;
 };
 
 // vim: sts=-1 ts=4 et sw=4
