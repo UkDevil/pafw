@@ -23,7 +23,7 @@ if(count _this > 2) then {
 // INSIGNIA
 // This block will give units insignia on their uniforms.
 [_unit,_typeofUnit] spawn {
-    #include "f_assignInsignia.sqf";
+    [_this select 0, _this select 1] call compile preprocessFileLineNumbers "f\assignGear\f_assignInsignia.sqf";
 };
 
 // DECIDE IF THE SCRIPT SHOULD RUN
