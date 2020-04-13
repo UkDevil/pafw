@@ -105,9 +105,10 @@ _debug = false;
 private _triggerObject = (synchronizedObjects _unit) select 0;
 
 if (isnil "_triggerObject") then {
-    // Always log, but...
-    [nil, "The trigger object for %1 is not defined.", _unit] call pa_fnc_bothlog;
-    // ... only mark things on the map if debugging is on
+    // Always log, ...
+    ["murk_spawn.sqf",
+     "The trigger object for %1 is not defined.", _unit] call pa_fnc_bothlog;
+    // ... but only mark things on the map if debugging is on
     if (_debug) exitWith {
         private _mname = format ["mstestmrk_%1",_unit];
         createMarker [_mname,(position _unit)];
@@ -217,7 +218,7 @@ for "_i" from 0 to _countWaypoints do {
 };
 
 if (_debug) then {
-    [nil, "Waypoints: %1", _waypointsArray] call pa_fnc_rptlog;
+    ["murk_spawn.sqf", "Waypoints: %1", _waypointsArray] call pa_fnc_rptlog;
 };
 
 deleteGroup _unitGroup;
@@ -592,7 +593,7 @@ if (_spawntype == "reset") then {
 // ONCE MODE
 if (_spawntype == "once") then {
     private _unitGroup = [_unitGroup,_side,_waypointsArray] call _fnc_spawnUnit;
-    [nil, "Spawned group %1", _unitGroup] call pa_fnc_rptlog;
+    ["murk_spawn.sqf", "Spawned group %1", _unitGroup] call pa_fnc_rptlog;
 };
 
 // vim: sts=-1 ts=4 et sw=4
