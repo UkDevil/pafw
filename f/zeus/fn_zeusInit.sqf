@@ -26,7 +26,9 @@ if !(isNull (getAssignedCuratorLogic _unit)) exitWith {
 
 // Exit if the unit is not a player
 if !(isPlayer _unit) exitWith {
-    [nil, "DEBUG (f\zeus\fn_zeusInit.sqf): Did not assign ZEUS to %1 because it is not under control of a player.",_unit] call pa_fnc_bothlog;
+    ["f/zeus/fn_zeusInit.sqf",
+     "Did not assign ZEUS to %1 because it is not under control of a player.",
+     _unit] call pa_fnc_bothlog;
 };
 
 // Make sure a side logic exists, if not create it
