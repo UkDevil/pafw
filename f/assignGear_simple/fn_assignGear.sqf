@@ -15,13 +15,13 @@ _faction = toLower (faction _unit);
 // faction was explicitly specified in the init call of the unit, e.g.
 // [_this, "ar", "blu_f"] call f_fnc_assignGear;
 if(count _this > 2) then {
-  _faction = toLower (_this select 2);
+    _faction = toLower (_this select 2);
 };
 
 // This block will give units insignia on their uniforms, i.e.
 // "CO" or "A1" or the like, from the insignia subdirectory.
 [_unit,_typeofUnit] spawn {
-    #include "f_assignInsignia.sqf"
+    [_this select 0, _this select 1] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignInsignia.sqf";
 };
 
 // Only run once, where the unit is local
@@ -35,7 +35,7 @@ _unit setVariable ["f_var_assignGear",_typeofUnit,true];
 _unit setVariable ["f_var_assignGear_done", false, true];
 
 if (f_var_debugMode == 1) then {
-  [nil, "Unit faction: %1",_faction] call pa_fnc_bothlog;
+    [nil, "Unit faction: %1",_faction] call pa_fnc_bothlog;
 };
 
 // Any unit with a faction of "blu_f" gets a NATO loadout.
@@ -43,27 +43,27 @@ if (f_var_debugMode == 1) then {
 // assume in the assignGear init call, like so:
 // [_this, "ar", "blu_f"] call f_fnc_assignGear;
 if (_faction == "blu_f") then {
-  #include "f_assignGear_nato.sqf"
-  _ff = true;
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_nato.sqf";
+    _ff = true;
 };
 
 // OPF_F -> CSAT
 if (_faction == "opf_f") then {
-  #include "f_assignGear_csat.sqf"
-  _ff = true;
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_csat.sqf";
+    _ff = true;
 };
 
 // INDEPEDENT -> AAF
 if(_faction == "ind_f") then {
-  #include "f_assignGear_aaf.sqf"
-  _ff = true;
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_aaf.sqf";
+    _ff = true;
 };
 
 // FIA units can be BLUFOR, OPFOR or INDEPENDENT, the "g"
 // in the faction strings probably stands for guerrilla.
 if (_faction in ["blu_g_f","opf_g_f","ind_g_f"]) then {
-  #include "f_assignGear_fia.sqf"
-  _ff = true;
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_fia.sqf";
+    _ff = true;
 };
 
 if (!_ff) then {
