@@ -1,6 +1,6 @@
 // Assign Insignia
 
-private ["_badge","_groupBadges","_roleBadge","_unit","_typeofUnit"];
+private ["_badge","_groupBadges","_roleBadge","_unit","_typeofUnit", "_faction"];
 
 _badge = "";
 _unit = _this select 0;
@@ -149,14 +149,12 @@ switch (_faction) do {
 };
 
 // ==========================================================================
-// END OF CONFIGURABLE SETTINGS - BELOW ASSIGNS THE INSIGNIAS
+// END OF CONFIGURABLE SETTINGS - BELOW ASSIGNS THE INSIGNIA
 
 // Loop through the groups and match badges to the group _unit belongs to. Due
 // to the groups being variables this requires calling formatted at runtime
 // code.
 _group = (group _unit);
-
-
 {
     if(!isnil (_x select 0)) then {
             call compile format ["

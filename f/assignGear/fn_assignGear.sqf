@@ -1,7 +1,9 @@
 // Assign Gear Script
 
 // DECLARE VARIABLES AND FUNCTIONS
-private ["_faction","_typeofUnit","_unit"];
+private ["_faction","_typeofUnit","_unit", "_ff", "_isMan"];
+
+_ff = false; // Track whether we have found a faction for this unit
 
 // DETECT unit FACTION
 // The following code detects what faction the unit's slot belongs to, and
@@ -31,7 +33,6 @@ if !(local _unit) exitWith {};
 // SET A PUBLIC VARIABLE
 // A public variable is set on the unit, indicating their type. This is mostly
 // relevant for the respawn component
-
 _unit setVariable ["f_var_assignGear", _typeofUnit, true];
 
 // DECLARE VARIABLES AND FUNCTIONS 2
@@ -50,7 +51,6 @@ _unit setVariable ["f_var_assignGear_done",false,true];
 // The following block of code executes only if the unit is in a NATO slot; it
 // automatically includes a file which contains the appropriate equipment
 // data.
-
 if (_faction == "blu_f") then {
 #include "f_assignGear_nato.sqf";
 };
@@ -59,7 +59,6 @@ if (_faction == "blu_f") then {
 // The following block of code executes only if the unit is in a CSAT slot; it
 // automatically includes a file which contains the appropriate equipment
 // data.
-
 if (_faction == "opf_f") then {
 #include "f_assignGear_csat.sqf";
 };
@@ -68,7 +67,6 @@ if (_faction == "opf_f") then {
 // The following block of code executes only if the unit is in a AAF slot; it
 // automatically includes a file which contains the appropriate equipment
 // data.
-
 if(_faction == "ind_f") then {
 #include "f_assignGear_aaf.sqf";
 };
@@ -77,13 +75,14 @@ if(_faction == "ind_f") then {
 // The following block of code executes only if the unit is in a FIA slot (any
 // faction); it automatically includes a file which contains the appropriate
 // equipment data.
-
 if (_faction in ["blu_g_f","opf_g_f","ind_g_f"]) then {
 #include "f_assignGear_fia.sqf"
 };
 
 // PA: Add medical supplies to unit
-#include "f_medical_gear.sqf"
+if (_isMan) then {
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear\f_medical_gear.sqf";
+};
 
 // This variable simply tracks the progress of the gear assignation process,
 // for other scripts to reference.

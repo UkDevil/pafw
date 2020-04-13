@@ -6,7 +6,7 @@
 if !(isServer) exitWith {};
 
 // DECLARE PRIVATE VARIABLES
-private ["_units","_unit","_faction","_known","_unitFactions","_unitClasses"];
+private ["_units","_unit","_faction","_known","_unitFactions","_unitClasses", "_defaultclass"];
 
 // SETUP CUSTOM VARIABLES
 // The factions of all units which should be affected
