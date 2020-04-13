@@ -112,7 +112,9 @@ switch (_typeofUnit) do {
   default {
     // the if (true) is necessary due to the way exitWith works
     if (true) exitwith {
-        [nil, " Unit:%1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit] call pa_fnc_bothlog;
+        ["f/assignGear_simple/f_assignGear_fia.sqf",
+         "Unit:%1. Gear template %2 does not exist, used Rifleman instead.",
+         _unit,_typeofunit] call pa_fnc_bothlog;
     };
   };
 // End of loadouts

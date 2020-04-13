@@ -951,8 +951,9 @@ switch (_typeofUnit) do {
         _unit selectweapon primaryweapon _unit;
 
         if (true) exitwith {
-            [nil,
-             " Unit:%1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit] call pa_fnc_bothlog;
+            ["f/assignGear/f_assignGear_nato.sqf",
+             "Unit:%1. Gear template %2 does not exist, used Rifleman instead.",
+             _unit, _typeofunit] call pa_fnc_bothlog;
         }
    };
 // END SWITCH FOR DEFINE UNIT TYPE LOADOUTS
