@@ -79,7 +79,8 @@ if(typeName _grpstemp == "SIDE") then {
 sleep 10;
 
 if (count _grps == 0) exitWith {
-    [nil, "No groups found, _grpstemp = %1, _grps = %2",_grpstemp,_grps] call pa_fnc_bothlog;
+    ["f/casualtiesCap/f_CasualtiesCapCheck.sqf", "No groups found, _grpstemp = %1, _grps = %2",
+     _grpstemp,_grps] call pa_fnc_bothlog;
 };
 
 // CREATE STARTING VALUES
@@ -90,7 +91,7 @@ _started = 0;
 
 // DEBUG
 if (f_var_debugMode == 1) then {
-    [nil, " _started = %1",_started] call pa_fnc_bothlog;
+    ["f/casualtiesCap/f_CasualtiesCapCheck.sqf", "_started = %1",_started] call pa_fnc_bothlog;
 };
 
 // CHECK IF CASUALTIES CAP HAS BEEN REACHED OR EXCEEDED
@@ -109,9 +110,8 @@ while {true} do {
       _remaining = _remaining + _alive;
     } forEach _grps;
 
-// DEBUG
     if (f_var_debugMode == 1) then {
-        [nil, "_remaining = %1",_remaining] call pa_fnc_bothlog;
+        ["f/casualtiesCap/f_CasualtiesCapCheck.sqf", "_remaining = %1",_remaining] call pa_fnc_bothlog;
     };
 
     if (_remaining == 0 || ((_started - _remaining) / _started) >= (_pc / 100)) exitWith {};
