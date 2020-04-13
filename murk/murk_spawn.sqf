@@ -128,7 +128,7 @@ while { count units _unitGroup > 0 } do {
     // The currently worked on unit
     private _unitsInGroup = units _unitGroup;
     private _unit = _unitsInGroup select 0;
-    [nil, "Handling unit %1, units left: %2", _unit, count units _unitGroup] call pa_fnc_logrpt;
+    ["murk_spawn.sqf", "Handling unit %1, units left: %2", _unit, count units _unitGroup] call pa_fnc_rptlog;
     // Check if it's a vehicle
     if ( (vehicle _unit) isKindOf "LandVehicle" OR (vehicle _unit) isKindOf "Air") then {
         private _vcl = vehicle _unit;
@@ -213,7 +213,7 @@ for "_i" from 0 to _countWaypoints do {
         waypointTimeout [_unitGroup, _i],
         waypointType [_unitGroup, _i]
     ];
-    _waypointsArray = _waypointsArray pushBack _waypointsEntry;
+    _waypointsArray pushBack _waypointsEntry;
 };
 
 if (_debug) then {

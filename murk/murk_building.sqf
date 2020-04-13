@@ -24,6 +24,10 @@
 
 // V1 release - captainblaffer
 
+// TODO(klausman): This script currently has 0 support for custom loadouts.
+// Once murkspawn.sqf has been refactored to use get/setUnitLoadout, we should
+// port that functionality here.
+
 // This script is serverside
 if(!isServer) exitWith{};
 
@@ -39,6 +43,10 @@ _f3gear = _this select 1;
 _spawndistance = _this select 2;
 _remainingtoattack = if (_countThis >= 4) then { _this select 3; } else { 0 };
 _initString = if (_countThis >= 5) then { _this select 4; } else { "" };
+// Some mission makers prefer using nil over ""
+if (isNil "_initString") then {
+    _initstring = "";
+};
 _centerpos = [0,0,0];
 _posarray = [];
 
@@ -221,7 +229,7 @@ private _fnc_spawnUnit = {
         }
         // Otherwise its infantry
         else {
-            private _spawnUnit = _newGroup createUnit [_unitType,_unitPos, [], 0, "NONE"];
+            _spawnUnit = _newGroup createUnit [_unitType,_unitPos, [], 0, "NONE"];
             commandstop _spawnUnit;
         };
         // Set all the things common to the spawned unit
@@ -235,19 +243,17 @@ private _fnc_spawnUnit = {
         _spawnUnit allowfleeing 0;
         _spawnUnit forceSpeed 0;
         dostop _spawnUnit;
-        _spawnUnit disableAI "TARGET";
+        //_spawnUnit disableAI "TARGET"; // why was this even here?
+        _spawnUnit enableAI "PATH"; // why was this even here?
         commandstop _spawnUnit;
         //disable ACE unconcious
-        [_spawnUnit] spawn {
-            private _spawnUnit = _this select 0;
-            _spawnUnit setvariable ["ace_medical_enableUnconsciousnessAI",0,false];
-        };
+        _spawnUnit setvariable ["ace_medical_enableUnconsciousnessAI",0,false];
         if (!isNil _unitName) then {
             _spawnUnit call compile format ["%1= _this; _this setVehicleVarName '%1'; PublicVariable '%1';",_unitName];
         };
     } forEach _unitArray;
 
-    leader _newGroup enableAttack false;
+    // leader _newGroup enableAttack false; // why was this even here?
     [units _newGroup] spawn {
         sleep 10;
         { _x setUnitPos "UP"; } foreach (_this select 0);
