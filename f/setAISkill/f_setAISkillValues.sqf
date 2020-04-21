@@ -76,7 +76,7 @@ if (!isNil "f_var_civAI") then {
 
 // DEBUG
 if (f_var_debugMode == 1) then {
-    ["f/setAISkill/f_setAISkillValues.sqf",
+    ["f\\setAISkill\\f_setAISkillValues.sqf",
      "f_var_skillBLU=%1 f_var_skillOpf=%2 f_var_skillRes=%3 f_var_skillCiv=%4",
      f_var_skillBlu, f_var_skillOpf, f_var_skillRes, f_var_skillCiv] call pa_fnc_bothlog;
 };

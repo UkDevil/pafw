@@ -306,7 +306,9 @@ _unit = _this select 1;
 _isMan = _unit isKindOf "CAManBase";
 
 if (_debug) then {
-    [nil, "Unit '%1' is a '%2' (man: %3)", _unit, _typeofUnit, _isman] call pa_fnc_rptlog;
+    ["f\\assingGear\\f_assignGear_aaf.sqf",
+     "Unit '%1' is a '%2' (man: %3)",
+     _unit, _typeofUnit, _isman] call pa_fnc_rptlog;
 };
 
 // This block needs only to be run on an infantry unit
@@ -440,7 +442,7 @@ switch (_typeofUnit) do {
         _unit selectweapon primaryweapon _unit;
 
         if (true) exitwith {
-            ["f/assignGear/f_assignGear_aaf.sqf",
+            ["f\\assignGear\\f_assignGear_aaf.sqf",
              "Unit:%1. Gear template %2 does not exist, used Rifleman instead.",
              _unit,_typeofunit] call pa_fnc_bothlog;
         }
