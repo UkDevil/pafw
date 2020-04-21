@@ -74,6 +74,6 @@ if (_unitSide == sideLogic) exitwith {};
 // ERROR CHECKING
 // If the faction of the unit cannot be defined, the script exits with an
 // error.
-[i"briefing.sqf", "Side %1 has no briefing defined.", str _unitSide] call pa_fnc_rptlog;
+["briefing.sqf", "Side %1 has no briefing defined.", str _unitSide] call pa_fnc_rptlog;
 
 // vim: sts=-1 ts=4 et sw=4
