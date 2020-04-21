@@ -21,7 +21,7 @@ if(count _this > 2) then {
 // This block will give units insignia on their uniforms, i.e.
 // "CO" or "A1" or the like, from the insignia subdirectory.
 [_unit,_typeofUnit] spawn {
-    [_this select 0, _this select 1] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignInsignia.sqf";
+    [_this select 0, _this select 1] call compile preprocessFileLineNumbers "f\assignGear_simple\f_assignInsignia.sqf";
 };
 
 // Only run once, where the unit is local
@@ -43,26 +43,26 @@ if (f_var_debugMode == 1) then {
 // assume in the assignGear init call, like so:
 // [_this, "ar", "blu_f"] call f_fnc_assignGear;
 if (_faction == "blu_f") then {
-    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_nato.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear_simple\f_assignGear_nato.sqf";
     _ff = true;
 };
 
 // OPF_F -> CSAT
 if (_faction == "opf_f") then {
-    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_csat.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear_simple\f_assignGear_csat.sqf";
     _ff = true;
 };
 
 // INDEPEDENT -> AAF
 if(_faction == "ind_f") then {
-    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_aaf.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear_simple\f_assignGear_aaf.sqf";
     _ff = true;
 };
 
 // FIA units can be BLUFOR, OPFOR or INDEPENDENT, the "g"
 // in the faction strings probably stands for guerrilla.
 if (_faction in ["blu_g_f","opf_g_f","ind_g_f"]) then {
-    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f/assignGear_simple/f_assignGear_fia.sqf";
+    [_typeOfUnit, _unit] call compile preprocessFileLineNumbers "f\assignGear_simple\f_assignGear_fia.sqf";
     _ff = true;
 };
 
