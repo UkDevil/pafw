@@ -11,7 +11,7 @@ if (isServer) then {
             if (!isInRemainsCollector _x) then {
                 ["CorpseManagerRefresh",
                  "Unit %1 is not in the Corpsemanager, adding it",
-                 _x] call pa_fnc_bothlog;
+                 _x] call pa_fnc_rptlog;
                 addToRemainsCollector [_x];
             };
         } foreach allUnits;

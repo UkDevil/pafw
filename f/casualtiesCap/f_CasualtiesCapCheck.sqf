@@ -79,7 +79,7 @@ if(typeName _grpstemp == "SIDE") then {
 sleep 10;
 
 if (count _grps == 0) exitWith {
-    ["f\\casualtiesCap\\f_CasualtiesCapCheck.sqf", "No groups found, _grpstemp = %1, _grps = %2",
+    ["f\casualtiesCap\f_CasualtiesCapCheck.sqf", "No groups found, _grpstemp = %1, _grps = %2",
      _grpstemp,_grps] call pa_fnc_bothlog;
 };
 
@@ -91,7 +91,7 @@ _started = 0;
 
 // DEBUG
 if (f_var_debugMode == 1) then {
-    ["f\\casualtiesCap\\f_CasualtiesCapCheck.sqf", "_started = %1",_started] call pa_fnc_bothlog;
+    ["f\casualtiesCap\f_CasualtiesCapCheck.sqf", "_started = %1",_started] call pa_fnc_bothlog;
 };
 
 // CHECK IF CASUALTIES CAP HAS BEEN REACHED OR EXCEEDED
@@ -111,7 +111,7 @@ while {true} do {
     } forEach _grps;
 
     if (f_var_debugMode == 1) then {
-        ["f\\casualtiesCap\\f_CasualtiesCapCheck.sqf", "_remaining = %1",_remaining] call pa_fnc_bothlog;
+        ["f\casualtiesCap\f_CasualtiesCapCheck.sqf", "_remaining = %1",_remaining] call pa_fnc_bothlog;
     };
 
     if (_remaining == 0 || ((_started - _remaining) / _started) >= (_pc / 100)) exitWith {};

@@ -927,8 +927,8 @@ switch (_typeofUnit) do {
         _unit selectweapon primaryweapon _unit;
 
         if (true) exitwith {
-            ["\\assignGear\\f_assignGear_fia.sqf",
-             "Unit:%1. Gear template %2 does not exist, used Rifleman instead.",
+            ["\assignGear\f_assignGear_fia.sqf",
+             "Unit: %1. Gear template %2 does not exist, used Rifleman instead.",
              _unit, _typeofunit] call pa_fnc_bothlog;
         }
    };

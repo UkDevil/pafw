@@ -13,7 +13,7 @@
 //
 // Examples:
 //
-// private -foo = 1;
+// private _foo = 1;
 // [nil, "Current value of _foo: %1", _foo] call pa_fnc_bothlog;
 //     This will log: 
 //     "14:42:54 (0:00:00) F_fnc_LocalFTMarkerSync - Current value of _foo: 1"
@@ -24,7 +24,8 @@
 // 	"14:42:54 (0:00:00) assignGear Early init - Initializing"
 // 	assuming the same call from above
 //
-// The timestamp is Hours:Minutes:Seconds since mission start.
+// The first timestamp is local (real-world) time.
+// The second timestamp is Hours:Minutes:Seconds since mission start.
 //
 // This function uses CBA functions to do the actual logging.
 

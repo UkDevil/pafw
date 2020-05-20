@@ -89,9 +89,9 @@ _unit setVariable ["f_var_assignGear_done", true, true];
 // If the faction of the unit cannot be defined, the script exits with an
 // error.
 if (_ff) then {
-    ["f\\assignGear\\fn_assignGear.sqf", "%1/%2 loadout: '%3'", _unit, _faction, _typeofUnit] call pa_fnc_rptlog;
+    ["f\assignGear\fn_assignGear.sqf", "%1/%2 loadout: '%3'", _unit, _faction, _typeofUnit] call pa_fnc_rptlog;
 } else {
-    ["f\\assignGear\\fn_assignGear.sqf", "%1/%2 has no loadout defined.", _unit, _faction] call pa_fnc_bothlog;
+    ["f\assignGear\fn_assignGear.sqf", "%1/%2 has no loadout defined.", _unit, _faction] call pa_fnc_bothlog;
 };
 
 // vim: sts=-1 ts=4 et sw=4

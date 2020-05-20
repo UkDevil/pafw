@@ -14,12 +14,12 @@
 // Examples:
 //
 // private -foo = 1;
-// [nil, "Current value of _foo: %1", _foo] call pa_fnc_bothlog;
+// [nil, "Current value of _foo: %1", _foo] call pa_fnc_rptlog;
 //     This will log: 
 //     "14:42:54 (0:00:00) F_fnc_LocalFTMarkerSync - Current value of _foo: 1"
 //     assuming the call comes from F_fnc_LocalFTMarkerSync
 //
-// ["assignGear Early init", "Initializing"]  call pa_fnc_bothlog;
+// ["assignGear Early init", "Initializing"]  call pa_fnc_rptlog;
 // 	This will log:
 // 	"14:42:54 (0:00:00) assignGear Early init - Initializing"
 // 	assuming the same call from above

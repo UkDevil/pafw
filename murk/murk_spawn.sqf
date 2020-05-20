@@ -484,9 +484,9 @@ private _fnc_spawnUnit = {
         // are too complex to handle here, so we hope the MM does the right
         // thing
         if (getMissionConfigValue ["corpseManagerMode", 2] == 1) then {
-            ["Murk", "Adding just-spawned unit %1 is to CorpseManager",
-             _x] call pa_fnc_bothlog;
-            addToRemainsCollector [_x];
+            ["Murk", "Adding just-spawned unit %1 to CorpseManager",
+             _spawnUnit] call pa_fnc_rptlog;
+            addToRemainsCollector [_spawnUnit];
         };
     } forEach _unitArray;
     if (_f3gear) then {
