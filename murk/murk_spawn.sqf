@@ -479,6 +479,15 @@ private _fnc_spawnUnit = {
         if (!isNil _unitName AND (_spawntype == "once" OR _spawntype == "repeated")) then {
             _spawnUnit call compile format ["%1= _this; _this setVehicleVarName '%1'; PublicVariable '%1';",_unitName];
         };
+        // Make sure the corpse manager is cleaning the units *if* it's in
+        // mode 1. Adding it in mode 0 would do nothing, but modes 2 and 3
+        // are too complex to handle here, so we hope the MM does the right
+        // thing
+        if (getMissionConfigValue ["corpseManagerMode", 2] == 1) then {
+            ["Murk", "Adding just-spawned unit %1 is to CorpseManager",
+             _x] call pa_fnc_bothlog;
+            addToRemainsCollector [_x];
+        };
     } forEach _unitArray;
     if (_f3gear) then {
         units _newGroup execVM "f\assignGear\f_assignGear_AI.sqf";

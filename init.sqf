@@ -113,4 +113,9 @@ if (!isserver && hasInterface) then {
 // Credits: Wolfenswan
 // [] execVM "pa\forceFlashlightAI.sqf";
 
+// PA - Enable CM-handled units refresh if needed
+if (getMissionConfigValue ["corpseManagerMode", 2] == 1) then {
+    execVm "pa\cmm_refresh.sqf";
+};
+
 // vim: sts=-1 ts=4 et sw=4
