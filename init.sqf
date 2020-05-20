@@ -113,9 +113,19 @@ if (!isserver && hasInterface) then {
 // Credits: Wolfenswan
 // [] execVM "pa\forceFlashlightAI.sqf";
 
+// SD - Advanced Towing and Slingloading
+// Credits: Seth Dud
+//
+// NOT WELL TESTED! Make sure these work with the objects in your mission!
+// NOTE: You can en/disable these two scripts entirely independently from each
+// other. 
+// [] execVM "pa\fn_advancedTowingInit.sqf";
+// [] execVM "pa\fn_advancedSlingLoadingInit.sqf";
+
 // PA - Enable CM-handled units refresh if needed
 if (getMissionConfigValue ["corpseManagerMode", 2] == 1) then {
     execVm "pa\cmm_refresh.sqf";
 };
+
 
 // vim: sts=-1 ts=4 et sw=4
